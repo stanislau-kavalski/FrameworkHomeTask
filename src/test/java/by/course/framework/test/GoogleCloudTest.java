@@ -57,16 +57,6 @@ public class GoogleCloudTest extends CommonConditions{
     }
 
     private void fillComputeEngineForm(GoogleCloudCalculatorPage calculatorPage) {
-//        int numberOfInstances = 4;
-//        String forWhatInstance = "";
-//        String operationSystemAndSoftware = "Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS";
-//        String machineClass = "Regular";
-//        String machineType = "n1-standard-8 (vCPUs: 8, RAM: 30GB)";
-//        int numberOfGPUs = 1;
-//        String gpuType = "NVIDIA Tesla V100";
-//        String localSSD = "2x375 GB";
-//        String dataCenterLocation = "Frankfurt (europe-west3)";
-//        String commitedUsage = "1 Year";
         InstancesData instancesData = InstancesDataCreator.withCredentialsFromProperty();
         MachineData machineData = MachineDataCreator.withCredentialsFromProperty();
         GpuData gpuData = GpuDataCreator.withCredentialsFromProperty();
