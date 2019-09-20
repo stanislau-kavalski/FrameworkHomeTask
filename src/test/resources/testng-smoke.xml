@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke" verbose="1" >
+    <test name="GoogleCloudDataTruthTest"   >
+        <classes>
+            <class name="by.course.framework.test.GoogleCloudTest" />
+        </classes>
+    </test>
+</suite>

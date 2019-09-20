@@ -1,16 +1,12 @@
-package hardcore.page;
+package by.course.framework.page;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class EmailForm {
-    private WebDriver driver;
+public class EmailForm extends AbstractPage{
 
     @FindBy(id = "idIframe")
     private WebElement iFrame;
@@ -22,7 +18,9 @@ public class EmailForm {
     private WebElement sendEmailBtn;
 
     public void switchToIframe() {
-        driver.switchTo().frame(iFrame);
+        if (getBrowserName().equals("chrome")) {
+            driver.switchTo().frame(iFrame);
+        }
     }
 
     public void enterEmail(String email) {
@@ -31,11 +29,18 @@ public class EmailForm {
 
     public void sendEmail() {
         new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.elementToBeClickable(sendEmailBtn)).click();
+                .until(ExpectedConditions.elementToBeClickable(sendEmailBtn)).sendKeys(Keys.ENTER);
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.name("emailForm")));
     }
 
     public EmailForm(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15),this);
+        super(driver);
+    }
+
+    // Utils
+    private String getBrowserName() {
+        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+        return cap.getBrowserName().toLowerCase();
     }
 }

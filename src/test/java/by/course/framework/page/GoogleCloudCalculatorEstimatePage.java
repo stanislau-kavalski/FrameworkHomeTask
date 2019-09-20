@@ -1,12 +1,14 @@
-package hardcore.page;
+package by.course.framework.page;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GoogleCloudCalculatorEstimatePage extends GoogleCloudAbstractPage {
+public class GoogleCloudCalculatorEstimatePage extends AbstractPage {
     @FindBy(id = "email_quote")
     private WebElement emailEstimate;
 
@@ -15,7 +17,9 @@ public class GoogleCloudCalculatorEstimatePage extends GoogleCloudAbstractPage {
 
     public void pressEmailEstimate() {
         new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.elementToBeClickable(emailEstimate)).click();
+                .until(ExpectedConditions.elementToBeClickable(emailEstimate)).sendKeys(Keys.ENTER);
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(By.name("emailForm")));
     }
 
     public String getTotalPrice() {

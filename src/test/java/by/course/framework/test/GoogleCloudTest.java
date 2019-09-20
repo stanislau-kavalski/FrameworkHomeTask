@@ -1,24 +1,18 @@
-package hardcore.test;
+package by.course.framework.test;
 
-import hardcore.page.*;
+import by.course.framework.page.*;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
-public class GoogleCloudTest {
-    private WebDriver driver;
+public class GoogleCloudTest extends CommonConditions{
     private ArrayList<String> tabs;
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void openCalculatorAndAddToEstimate() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
         GoogleCloudHomePage googleCloudHomePage = new GoogleCloudHomePage(driver);
         googleCloudHomePage.openHomePage();
         googleCloudHomePage.openProductsPage();
@@ -31,7 +25,7 @@ public class GoogleCloudTest {
         GoogleCloudCalculatorEstimatePage estimatePage = new GoogleCloudCalculatorEstimatePage(driver);
         estimatePage.pressEmailEstimate();
         openNewTab();
-        tabs = new ArrayList<String>(driver.getWindowHandles());
+        tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         MinuteMailHomePage emailPage = new MinuteMailHomePage(driver);
         emailPage.openHomePage();
@@ -54,13 +48,7 @@ public class GoogleCloudTest {
         Assert.assertEquals(costInEmail, costInEstimatePage);
     }
 
-    @AfterClass(alwaysRun = true)
-    public void browserTearDown() {
-        driver.quit();
-        driver = null;
-    }
-
-    public void fillComputeEngineForm(GoogleCloudCalculatorPage calculatorPage) {
+    private void fillComputeEngineForm(GoogleCloudCalculatorPage calculatorPage) {
         int numberOfInstances = 4;
         String forWhatInstance = "";
         String operationSystemAndSoftware = "Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS";

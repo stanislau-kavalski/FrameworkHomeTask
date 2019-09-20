@@ -1,14 +1,11 @@
-package hardcore.page;
+package by.course.framework.page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
+public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(id = "idIframe")
     private WebElement iFrame;
 
@@ -70,14 +67,15 @@ public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
     }
 
     public GoogleCloudCalculatorPage setMachineClass(String machineClass) {
-        machineClassList.click();
+        machineClassList.sendKeys(Keys.ENTER);
         WebElement machineClassUserChoice = chooseElementFromDropDownList(machineClass);
         machineClassUserChoice.click();
         return this;
     }
 
     public GoogleCloudCalculatorPage setMachineType(String machineType) {
-        machineTypeList.click();
+        scrollToElement(machineTypeList);
+        machineTypeList.sendKeys(Keys.ENTER);
         WebElement machineTypeUserChoice = chooseElementFromDropDownList(machineType);
         machineTypeUserChoice.click();
         return this;
@@ -133,12 +131,17 @@ public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
         addToEstimate.click();
     }
 
-    public WebElement chooseElementFromDropDownList(String element) {
+    private WebElement chooseElementFromDropDownList(String element) {
         return new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='md-select-menu-container md-active md-clickable']//md-option/div[contains(text(), '" + element + "')]")));
     }
 
     public GoogleCloudCalculatorPage(WebDriver driver) {
         super(driver);
+    }
+
+    // Utils
+    private void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }
