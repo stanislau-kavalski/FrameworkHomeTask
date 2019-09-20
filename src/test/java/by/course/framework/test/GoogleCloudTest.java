@@ -1,6 +1,14 @@
 package by.course.framework.test;
 
+import by.course.framework.model.GpuData;
+import by.course.framework.model.InstancesData;
+import by.course.framework.model.MachineData;
+import by.course.framework.model.OtherData;
 import by.course.framework.page.*;
+import by.course.framework.service.GpuDataCreator;
+import by.course.framework.service.InstancesDataCreator;
+import by.course.framework.service.MachineDataCreator;
+import by.course.framework.service.OtherDataCreator;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -49,34 +57,38 @@ public class GoogleCloudTest extends CommonConditions{
     }
 
     private void fillComputeEngineForm(GoogleCloudCalculatorPage calculatorPage) {
-        int numberOfInstances = 4;
-        String forWhatInstance = "";
-        String operationSystemAndSoftware = "Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS";
-        String machineClass = "Regular";
-        String machineType = "n1-standard-8 (vCPUs: 8, RAM: 30GB)";
-        int numberOfGPUs = 1;
-        String gpuType = "NVIDIA Tesla V100";
-        String localSSD = "2x375 GB";
-        String dataCenterLocation = "Frankfurt (europe-west3)";
-        String commitedUsage = "1 Year";
+//        int numberOfInstances = 4;
+//        String forWhatInstance = "";
+//        String operationSystemAndSoftware = "Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS";
+//        String machineClass = "Regular";
+//        String machineType = "n1-standard-8 (vCPUs: 8, RAM: 30GB)";
+//        int numberOfGPUs = 1;
+//        String gpuType = "NVIDIA Tesla V100";
+//        String localSSD = "2x375 GB";
+//        String dataCenterLocation = "Frankfurt (europe-west3)";
+//        String commitedUsage = "1 Year";
+        InstancesData instancesData = InstancesDataCreator.withCredentialsFromProperty();
+        MachineData machineData = MachineDataCreator.withCredentialsFromProperty();
+        GpuData gpuData = GpuDataCreator.withCredentialsFromProperty();
+        OtherData otherData = OtherDataCreator.withCredentialsFromProperty();
         calculatorPage.
                 switchToIframe().
                 selectComputeEngine().
-                setNumberOfInstances(numberOfInstances).
-                setWhatAreTheseInstanceFor(forWhatInstance).
-                setOperationSystemOrSoftware(operationSystemAndSoftware).
-                setMachineClass(machineClass).
-                setMachineType(machineType).
+                setNumberOfInstances(instancesData.getNumberOfInstances()).
+                setWhatAreTheseInstanceFor(instancesData.getForWhatInstance()).
+                setOperationSystemOrSoftware(otherData.getOperationSystemAndSoftware()).
+                setMachineClass(machineData.getMachineClass()).
+                setMachineType(machineData.getMachineType()).
                 addGPUs().
-                setNumberOfGPUs(numberOfGPUs).
-                setGpuType(gpuType).
-                setLocalSSD(localSSD).
-                setDataCenterLocation(dataCenterLocation).
-                setCommitedUsage(commitedUsage).
+                setNumberOfGPUs(gpuData.getNumberOfGPU()).
+                setGpuType(gpuData.getGpuType()).
+                setLocalSSD(otherData.getLocalSSD()).
+                setDataCenterLocation(otherData.getDataCenterLocation()).
+                setCommitedUsage(otherData.getCommitedUsage()).
                 addToEstimate();
     }
 
-    public void openNewTab() {
+    private void openNewTab() {
         ((JavascriptExecutor)driver).executeScript("window.open()");
     }
 }
