@@ -1,5 +1,6 @@
 package by.course.framework.page;
 
+import by.course.framework.utils.ScrollUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -74,7 +75,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage setMachineType(String machineType) {
-        scrollToElement(machineTypeList);
+        ScrollUtils.scrollToElement(driver, machineTypeList);
         machineTypeList.sendKeys(Keys.ENTER);
         WebElement machineTypeUserChoice = chooseElementFromDropDownList(machineType);
         machineTypeUserChoice.click();
@@ -138,10 +139,5 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
 
     public GoogleCloudCalculatorPage(WebDriver driver) {
         super(driver);
-    }
-
-    // Utils
-    private void scrollToElement(WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }

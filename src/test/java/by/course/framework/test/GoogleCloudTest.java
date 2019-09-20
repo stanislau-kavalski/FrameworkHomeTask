@@ -9,6 +9,7 @@ import by.course.framework.service.GpuDataCreator;
 import by.course.framework.service.InstancesDataCreator;
 import by.course.framework.service.MachineDataCreator;
 import by.course.framework.service.OtherDataCreator;
+import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -32,7 +33,7 @@ public class GoogleCloudTest extends CommonConditions{
         fillComputeEngineForm(calculatorPage);
         GoogleCloudCalculatorEstimatePage estimatePage = new GoogleCloudCalculatorEstimatePage(driver);
         estimatePage.pressEmailEstimate();
-        openNewTab();
+        BrowserUtils.openNewTab(driver);
         tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         MinuteMailHomePage emailPage = new MinuteMailHomePage(driver);
@@ -76,9 +77,5 @@ public class GoogleCloudTest extends CommonConditions{
                 setDataCenterLocation(otherData.getDataCenterLocation()).
                 setCommitedUsage(otherData.getCommitedUsage()).
                 addToEstimate();
-    }
-
-    private void openNewTab() {
-        ((JavascriptExecutor)driver).executeScript("window.open()");
     }
 }

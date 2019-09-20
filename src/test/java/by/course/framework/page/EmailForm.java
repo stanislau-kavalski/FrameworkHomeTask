@@ -1,7 +1,7 @@
 package by.course.framework.page;
 
+import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,7 +18,7 @@ public class EmailForm extends AbstractPage{
     private WebElement sendEmailBtn;
 
     public void switchToIframe() {
-        if (getBrowserName().equals("chrome")) {
+        if (BrowserUtils.getBrowserName(driver).equals("chrome")) {
             driver.switchTo().frame(iFrame);
         }
     }
@@ -36,11 +36,5 @@ public class EmailForm extends AbstractPage{
 
     public EmailForm(WebDriver driver) {
         super(driver);
-    }
-
-    // Utils
-    private String getBrowserName() {
-        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-        return cap.getBrowserName().toLowerCase();
     }
 }
