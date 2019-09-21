@@ -10,7 +10,6 @@ import by.course.framework.service.InstancesDataCreator;
 import by.course.framework.service.MachineDataCreator;
 import by.course.framework.service.OtherDataCreator;
 import by.course.framework.utils.BrowserUtils;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
