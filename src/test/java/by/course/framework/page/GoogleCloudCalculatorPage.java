@@ -134,7 +134,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
 
     private WebElement chooseElementFromDropDownList(String element) {
         return new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='md-select-menu-container md-active md-clickable']//md-option/div[contains(text(), '" + element + "')]")));
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='md-select-menu-container md-active md-clickable']//md-option/div[contains(text(), '" + element + "')]")));
     }
 
     public GoogleCloudCalculatorPage(WebDriver driver) {
