@@ -14,4 +14,8 @@ public class BrowserUtils {
     public static void openNewTab(WebDriver driver) {
         ((JavascriptExecutor)driver).executeScript("window.open()");
     }
+
+    public static int getWindowWidth(WebDriver driver) {
+        return driver.manage().window().getSize().getWidth();
+    }
 }
