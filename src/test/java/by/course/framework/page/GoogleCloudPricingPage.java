@@ -14,8 +14,10 @@ public class GoogleCloudPricingPage extends AbstractPage {
 
     public void openCalculators() {
         if(BrowserUtils.getWindowWidth(driver) < 1280) {
-            new WebDriverWait(driver, 10).
-                    until(ExpectedConditions.presenceOfElementLocated(By.className("cloud-jump-menu__toggle"))).click();
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            WebElement toggleBtn = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("cloud-jump-menu__toggle")));
+            wait.until(ExpectedConditions.stalenessOf(toggleBtn));
+            toggleBtn.click();
         }
         calculatorsBtn.click();
     }
