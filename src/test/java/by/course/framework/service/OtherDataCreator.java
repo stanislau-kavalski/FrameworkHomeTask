@@ -3,6 +3,7 @@ package by.course.framework.service;
 import by.course.framework.model.OtherData;
 
 public class OtherDataCreator {
+
     private static final String TESTDATA_OTHER_SOFTWARE = "testdata.other.software";
     private static final String TESTDATA_OTHER_SSD = "testdata.other.ssd";
     private static final String TESTDATA_OTHER_LOCATION = "testdata.other.location";

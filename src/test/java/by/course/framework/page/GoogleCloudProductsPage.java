@@ -5,11 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class GoogleCloudProductsPage extends AbstractPage {
+
     @FindBy(linkText = "See pricing")
     private WebElement seePricingBtn;
 
-    public void openSeePricing() {
+    public GoogleCloudPricingPage openSeePricing() {
         seePricingBtn.click();
+        return new GoogleCloudPricingPage(driver);
     }
 
     public GoogleCloudProductsPage(WebDriver driver) {

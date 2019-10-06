@@ -6,20 +6,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleCloudCalculatorEstimatePage extends AbstractPage {
+
+    private static final String EMAIL_FORM_NAME = "emailForm";
+
     @FindBy(id = "email_quote")
     private WebElement emailEstimate;
 
     @FindBy(xpath = "//*[@class='ng-binding'][contains(text(), 'Total Estimated Cost')]")
     private WebElement totalPrice;
 
-    public void pressEmailEstimate() {
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.elementToBeClickable(emailEstimate)).sendKeys(Keys.ENTER);
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.name("emailForm")));
+    public MinuteMailHomePage pressEmailEstimate() {
+        wait.until(ExpectedConditions.elementToBeClickable(emailEstimate)).sendKeys(Keys.ENTER);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.name(EMAIL_FORM_NAME)));
+        return new MinuteMailHomePage(driver);
     }
 
     public String getTotalPrice() {

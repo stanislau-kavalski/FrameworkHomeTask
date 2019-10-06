@@ -15,7 +15,8 @@ import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class TestListener implements ITestListener{
+public class TestListener implements ITestListener {
+
     private Logger log = LogManager.getRootLogger();
 
     public void onTestStart(ITestResult iTestResult) {

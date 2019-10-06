@@ -1,6 +1,7 @@
 package by.course.framework.model;
 
 public class OtherData {
+
     private String operationSystemAndSoftware;
     private String localSSD;
     private String dataCenterLocation;
