@@ -5,8 +5,8 @@ public class GpuData {
     private int numberOfGPU;
     private String gpuType;
 
-    public GpuData(String numberOfGPU, String gpuType) {
-        this.numberOfGPU = Integer.parseInt(numberOfGPU);
+    public GpuData(int numberOfGPU, String gpuType) {
+        this.numberOfGPU = numberOfGPU;
         this.gpuType = gpuType;
     }
 

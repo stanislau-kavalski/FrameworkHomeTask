@@ -20,27 +20,31 @@ public class MinuteMailHomePage extends AbstractPage {
     private WebElement email;
 
     public MinuteMailHomePage openMailHomePage() {
-        BrowserUtils.openNewTab(driver);
-        BrowserUtils.switchToTab(driver, 1);
-        driver.get(HOMEPAGE_URL);
+        BrowserUtils.openNewTab(getDriver());
+        BrowserUtils.switchToTab(getDriver(), 1);
+        getDriver().get(HOMEPAGE_URL);
         return this;
     }
 
     public EmailForm getEmail() {
-        return new EmailForm(driver, email.getAttribute("value"));
+        return new EmailForm(getDriver(), email.getAttribute("value"));
     }
 
-    public void waitUntilEmailComesAndOpenIt() {
-        new WebDriverWait(driver, WAIT_EMAIL_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(GOOGLE_EMAIL_MESSAGE_XPATH))).sendKeys(Keys.ENTER);
+    public void OpenEmail() {
+        waitUntilEmailComesAndOpenIt();
     }
 
     public String getTotalPrice() {
-        return leaveOnlyDigitsInText(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(EMAIL_TOTAL_PRICE_XPATH))).getText());
+        return leaveOnlyDigitsInText(waitUntilVisibilityOfElementLocatedAndGetText(By.xpath(EMAIL_TOTAL_PRICE_XPATH)));
     }
 
     private String leaveOnlyDigitsInText(String text) {
         return text.replaceAll("[^0-9.,]+","");
+    }
+
+    private void waitUntilEmailComesAndOpenIt() {
+        new WebDriverWait(getDriver(), WAIT_EMAIL_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(GOOGLE_EMAIL_MESSAGE_XPATH))).sendKeys(Keys.ENTER);
     }
 
     public MinuteMailHomePage(WebDriver driver) {

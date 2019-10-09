@@ -12,13 +12,13 @@ public class GoogleCloudHomePage extends AbstractPage {
     private WebElement seeProductsBtn;
 
     public GoogleCloudHomePage openHomePage() {
-        driver.get(HOMEPAGE_URL);
+        getDriver().get(HOMEPAGE_URL);
         return this;
     }
 
     public GoogleCloudProductsPage openProductsPage() {
         seeProductsBtn.click();
-        return new GoogleCloudProductsPage(driver);
+        return new GoogleCloudProductsPage(getDriver());
     }
 
     public GoogleCloudHomePage(WebDriver driver) {

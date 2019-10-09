@@ -21,4 +21,8 @@ public class CommonConditions {
     {
         DriverSingleton.closeDriver();
     }
+
+    protected WebDriver getDriver() {
+        return driver;
+    }
 }

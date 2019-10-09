@@ -5,8 +5,8 @@ public class InstancesData {
         private int numberOfInstances;
         private String forWhatInstance;
 
-        public InstancesData(String numberOfInstances, String forWhatInstance) {
-                this.numberOfInstances = Integer.parseInt(numberOfInstances);
+        public InstancesData(int numberOfInstances, String forWhatInstance) {
+                this.numberOfInstances = numberOfInstances;
                 this.forWhatInstance = forWhatInstance;
         }
 

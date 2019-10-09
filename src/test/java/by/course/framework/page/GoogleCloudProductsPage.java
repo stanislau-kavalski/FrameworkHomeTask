@@ -11,7 +11,7 @@ public class GoogleCloudProductsPage extends AbstractPage {
 
     public GoogleCloudPricingPage openSeePricing() {
         seePricingBtn.click();
-        return new GoogleCloudPricingPage(driver);
+        return new GoogleCloudPricingPage(getDriver());
     }
 
     public GoogleCloudProductsPage(WebDriver driver) {

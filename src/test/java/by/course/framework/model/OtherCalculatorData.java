@@ -1,18 +1,11 @@
 package by.course.framework.model;
 
-public class OtherData {
+public class OtherCalculatorData {
 
     private String operationSystemAndSoftware;
     private String localSSD;
     private String dataCenterLocation;
     private String commitedUsage;
-
-    public OtherData(String operationSystemAndSoftware, String localSSD, String dataCenterLocation, String commitedUsage) {
-        this.operationSystemAndSoftware = operationSystemAndSoftware;
-        this.localSSD = localSSD;
-        this.dataCenterLocation = dataCenterLocation;
-        this.commitedUsage = commitedUsage;
-    }
 
     public String getOperationSystemAndSoftware() {
         return operationSystemAndSoftware;

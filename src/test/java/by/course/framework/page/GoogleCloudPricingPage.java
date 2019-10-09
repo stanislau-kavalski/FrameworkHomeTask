@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GoogleCloudPricingPage extends AbstractPage {
 
@@ -16,12 +15,12 @@ public class GoogleCloudPricingPage extends AbstractPage {
     private WebElement calculatorsBtn;
 
     public GoogleCloudCalculatorPage openCalculators() {
-        if(BrowserUtils.getWindowWidth(driver) < MIN_WINDOW_WIDTH) {
-            driver.navigate().refresh();
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.className(CLOUD_JUMP_MENU_CLASSNAME))).click();
+        if(BrowserUtils.getWindowWidth(getDriver()) < MIN_WINDOW_WIDTH) {
+            getDriver().navigate().refresh();
+            waitUntilPresenceOfElementLocatedAndClick(By.className(CLOUD_JUMP_MENU_CLASSNAME));
         }
         calculatorsBtn.click();
-        return new GoogleCloudCalculatorPage(driver);
+        return new GoogleCloudCalculatorPage(getDriver());
     }
 
     public GoogleCloudPricingPage(WebDriver driver) {

@@ -3,7 +3,6 @@ package by.course.framework.page;
 import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class EmailForm extends AbstractPage {
 
@@ -20,13 +19,13 @@ public class EmailForm extends AbstractPage {
     private WebElement sendEmailBtn;
 
     private void switchToIframe() {
-        if (BrowserUtils.getBrowserName(driver).equals("chrome")) {
-            driver.switchTo().frame(iFrame);
+        if (BrowserUtils.getBrowserName(getDriver()).equals("chrome")) {
+            getDriver().switchTo().frame(iFrame);
         }
     }
 
     public EmailForm openEmailForm() {
-        BrowserUtils.switchToTab(driver, 0);
+        BrowserUtils.switchToTab(getDriver(), 0);
         switchToIframe();
         return this;
     }
@@ -37,8 +36,8 @@ public class EmailForm extends AbstractPage {
     }
 
     public void sendEmail() {
-        wait.until(ExpectedConditions.elementToBeClickable(sendEmailBtn)).sendKeys(Keys.ENTER);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.name(EMAIL_FORM_NAME)));
+        waitUntilElementToBeClickableAndSendKeys(sendEmailBtn);
+        waitUntilInvisibilityOfElementLocated(By.name(EMAIL_FORM_NAME));
     }
 
     public EmailForm(WebDriver driver, String email) {

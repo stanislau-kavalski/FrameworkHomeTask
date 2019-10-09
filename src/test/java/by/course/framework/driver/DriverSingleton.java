@@ -9,29 +9,38 @@ public class DriverSingleton {
 
     private static WebDriver driver;
 
-    private DriverSingleton(){}
+    private DriverSingleton() {
+        throw new AssertionError("Cannot be instantiated directly.");
+    }
 
     public static WebDriver getDriver() {
         if (null == driver){
             switch (System.getProperty("browser")){
                 case "firefox": {
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
+                    driver = createFirefoxDriver();
                     break;
                 }
                 case "chrome": {
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    driver = createChromeDriver();
                     break;
                 }
                 default: {
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    driver = createChromeDriver();
                 }
             }
             driver.manage().window().maximize();
         }
         return driver;
+    }
+
+    private static WebDriver createFirefoxDriver() {
+        WebDriverManager.firefoxdriver().setup();
+        return new FirefoxDriver();
+    }
+
+    private static WebDriver createChromeDriver() {
+        WebDriverManager.chromedriver().setup();
+        return new ChromeDriver();
     }
 
     public static void closeDriver() {

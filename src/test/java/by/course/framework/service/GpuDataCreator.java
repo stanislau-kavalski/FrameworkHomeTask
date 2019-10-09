@@ -8,7 +8,7 @@ public class GpuDataCreator {
     private static final String TESTDATA_GPU_TYPE = "testdata.gpu.type";
 
     public static GpuData withCredentialsFromProperty() {
-        return new GpuData(TestDataReader.getTestData(TESTDATA_GPU_NUMBER),
+        return new GpuData(Integer.parseInt(TestDataReader.getTestData(TESTDATA_GPU_NUMBER)),
                 TestDataReader.getTestData(TESTDATA_GPU_TYPE));
     }
 }

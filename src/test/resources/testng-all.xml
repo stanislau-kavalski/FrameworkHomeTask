@@ -2,6 +2,7 @@
 
 <suite name="All tests" verbose="1" >
     <test name="All tests">
+        <parameter name="GPU" value="1" />
         <packages>
             <package name="by.course.framework.test" />
         </packages>
