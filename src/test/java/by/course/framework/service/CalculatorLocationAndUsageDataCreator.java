@@ -13,12 +13,12 @@ public class CalculatorLocationAndUsageDataCreator {
     }
 
     public CalculatorLocationAndUsageDataCreator withLocation() {
-        locationAndUsageData.setDataCenterLocation(TestDataReader.getTestData(TESTDATA_LOCATION));
+        locationAndUsageData.setDataCenterLocation(CalculatorTestDataReader.getTestData(TESTDATA_LOCATION));
         return this;
     }
 
     public CalculatorLocationAndUsageDataCreator withCommitedUsage() {
-        locationAndUsageData.setCommitedUsage(TestDataReader.getTestData(TESTDATA_COMMITED_USAGE));
+        locationAndUsageData.setCommitedUsage(CalculatorTestDataReader.getTestData(TESTDATA_COMMITED_USAGE));
         return this;
     }
 

@@ -13,12 +13,12 @@ public class CalculatorSoftwareAndSsdDataCreator {
     }
 
     public CalculatorSoftwareAndSsdDataCreator withSoftware() {
-        softwareAndSsdData.setOperationSystemAndSoftware(TestDataReader.getTestData(TESTDATA_SOFTWARE));
+        softwareAndSsdData.setOperationSystemAndSoftware(CalculatorTestDataReader.getTestData(TESTDATA_SOFTWARE));
         return this;
     }
 
     public CalculatorSoftwareAndSsdDataCreator withSsd() {
-        softwareAndSsdData.setLocalSSD(TestDataReader.getTestData(TESTDATA_SSD));
+        softwareAndSsdData.setLocalSSD(CalculatorTestDataReader.getTestData(TESTDATA_SSD));
         return this;
     }
 

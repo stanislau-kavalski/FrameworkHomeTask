@@ -13,12 +13,12 @@ public class CalculatorMachineDataCreator {
     }
 
     public CalculatorMachineDataCreator withMachineClass() {
-        machineData.setMachineClass(TestDataReader.getTestData(TESTDATA_MACHINE_CLASS));
+        machineData.setMachineClass(CalculatorTestDataReader.getTestData(TESTDATA_MACHINE_CLASS));
         return this;
     }
 
     public CalculatorMachineDataCreator withMachineType() {
-        machineData.setMachineType(TestDataReader.getTestData(TESTDATA_MACHINE_TYPE));
+        machineData.setMachineType(CalculatorTestDataReader.getTestData(TESTDATA_MACHINE_TYPE));
         return this;
     }
 

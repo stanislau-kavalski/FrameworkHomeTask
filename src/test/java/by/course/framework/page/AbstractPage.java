@@ -1,5 +1,6 @@
 package by.course.framework.page;
 
+import by.course.framework.model.ConfigTimeoutData;
 import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,8 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPage {
-    //to properties
-    private static final int WAIT_TIMEOUT_SECONDS = 10;
+
     protected WebDriver driver;
     protected WebDriverWait wait;
 
@@ -48,7 +48,7 @@ public abstract class AbstractPage {
 
     protected AbstractPage(WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, WAIT_TIMEOUT_SECONDS),this);
+        this.wait = new WebDriverWait(driver, ConfigTimeoutData.getCommonTimeout());
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, ConfigTimeoutData.getCommonTimeout()),this);
     }
 }

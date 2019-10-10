@@ -13,12 +13,12 @@ public class CalculatorInstancesDataCreator {
     }
 
     public CalculatorInstancesDataCreator withInstancesNumber() {
-        instancesData.setNumberOfInstances(Integer.parseInt(TestDataReader.getTestData(TESTDATA_INSTANCES_NUMBER)));
+        instancesData.setNumberOfInstances(Integer.parseInt(CalculatorTestDataReader.getTestData(TESTDATA_INSTANCES_NUMBER)));
         return this;
     }
 
     public CalculatorInstancesDataCreator withInstancesPurpose() {
-        instancesData.setForWhatInstance(TestDataReader.getTestData(TESTDATA_INSTANCES_PURPOSE));
+        instancesData.setForWhatInstance(CalculatorTestDataReader.getTestData(TESTDATA_INSTANCES_PURPOSE));
         return this;
     }
 

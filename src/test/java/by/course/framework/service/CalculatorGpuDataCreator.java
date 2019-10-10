@@ -13,12 +13,12 @@ public class CalculatorGpuDataCreator {
     }
 
     public CalculatorGpuDataCreator withGpuNumber() {
-        gpuData.setNumberOfGPU(Integer.parseInt(TestDataReader.getTestData(TESTDATA_GPU_NUMBER)));
+        gpuData.setNumberOfGPU(Integer.parseInt(CalculatorTestDataReader.getTestData(TESTDATA_GPU_NUMBER)));
         return this;
     }
 
     public CalculatorGpuDataCreator withGpuType() {
-        gpuData.setGpuType(TestDataReader.getTestData(TESTDATA_GPU_TYPE));
+        gpuData.setGpuType(CalculatorTestDataReader.getTestData(TESTDATA_GPU_TYPE));
         return this;
     }
 
