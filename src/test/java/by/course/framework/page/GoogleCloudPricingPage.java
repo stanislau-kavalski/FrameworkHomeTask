@@ -19,7 +19,7 @@ public class GoogleCloudPricingPage extends AbstractPage {
             getDriver().navigate().refresh();
             waitUntilPresenceOfElementLocatedAndClick(By.className(CLOUD_JUMP_MENU_CLASSNAME));
         }
-        calculatorsBtn.click();
+        clickOnWebElement(calculatorsBtn);
         return new GoogleCloudCalculatorPage(getDriver());
     }
 

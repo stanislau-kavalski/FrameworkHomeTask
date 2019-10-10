@@ -1,14 +1,9 @@
 package by.course.framework.model;
 
-public class MachineData {
+public class CalculatorMachineData {
 
     private String machineClass;
     private String machineType;
-
-    public MachineData(String machineClass, String machineType) {
-        this.machineClass = machineClass;
-        this.machineType = machineType;
-    }
 
     public String getMachineClass() {
         return machineClass;

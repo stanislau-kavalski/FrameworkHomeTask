@@ -1,7 +1,7 @@
 package by.course.framework.page;
 
+import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -15,16 +15,23 @@ public abstract class AbstractPage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
+    protected void clickOnWebElement(WebElement element) {
+        BrowserUtils.scrollToElementAndClick(getDriver(), element);
+    }
+
     protected void waitUntilPresenceOfElementLocatedAndClick(By element) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(element)).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        WebElement webElement = getDriver().findElement(element);
+        clickOnWebElement(webElement);
     }
 
     protected void waitUntilPresenceOfElementLocated(By element) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(element)).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(element));
     }
 
-    protected void waitUntilElementToBeClickableAndSendKeys(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(Keys.ENTER);
+    protected void waitUntilElementToBeClickableAndClick(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        clickOnWebElement(element);
     }
 
     protected void waitUntilInvisibilityOfElementLocated(By element) {

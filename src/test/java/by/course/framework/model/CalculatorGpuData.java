@@ -1,14 +1,9 @@
 package by.course.framework.model;
 
-public class GpuData {
+public class CalculatorGpuData {
 
     private int numberOfGPU;
     private String gpuType;
-
-    public GpuData(int numberOfGPU, String gpuType) {
-        this.numberOfGPU = numberOfGPU;
-        this.gpuType = gpuType;
-    }
 
     public int getNumberOfGPU() {
         return numberOfGPU;

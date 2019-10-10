@@ -36,7 +36,7 @@ public class EmailForm extends AbstractPage {
     }
 
     public void sendEmail() {
-        waitUntilElementToBeClickableAndSendKeys(sendEmailBtn);
+        waitUntilElementToBeClickableAndClick(sendEmailBtn);
         waitUntilInvisibilityOfElementLocated(By.name(EMAIL_FORM_NAME));
     }
 

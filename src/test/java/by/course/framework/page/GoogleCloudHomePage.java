@@ -17,7 +17,7 @@ public class GoogleCloudHomePage extends AbstractPage {
     }
 
     public GoogleCloudProductsPage openProductsPage() {
-        seeProductsBtn.click();
+        clickOnWebElement(seeProductsBtn);
         return new GoogleCloudProductsPage(getDriver());
     }
 

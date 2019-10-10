@@ -1,27 +1,28 @@
 package by.course.framework.test;
 
-import by.course.framework.model.OtherCalculatorData;
+import by.course.framework.model.*;
 import by.course.framework.page.*;
-import by.course.framework.service.OtherCalculatorDataCreator;
+import by.course.framework.service.*;
 import by.course.framework.utils.BrowserUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class GoogleCloudTest extends CommonConditions {
 
     @BeforeMethod(alwaysRun = true)
-    @Parameters(value = "GPU")
     public void openCalculatorAndAddToEstimate() {
-        GoogleCloudHomePage googleCloud = new GoogleCloudHomePage(getDriver());
-        googleCloud.
+        GoogleCloudCalculatorPage calculatorPage = new GoogleCloudHomePage(getDriver()).
                 openHomePage().
                 openProductsPage().
                 openSeePricing().
                 openCalculators().
-                switchToCalculatorFormIframe().
-                fillOtherCalculatorData().
+                switchToCalculatorFormIframe();
+
+        fillCalculatorData(calculatorPage);
+
+        calculatorPage.
+                clickAddToEstimate().
                 pressEmailEstimate().
                 openMailHomePage().
                 getEmail().
@@ -41,19 +42,63 @@ public class GoogleCloudTest extends CommonConditions {
         Assert.assertEquals(costInEmail, costInEstimatePage);
     }
 
-    private GoogleCloudCalculatorEstimatePage fillOtherCalculatorData() {
-        OtherCalculatorData otherCalculatorData = OtherCalculatorDataCreator.create().
+    private void fillCalculatorData(GoogleCloudCalculatorPage calculatorPage) {
+        calculatorPage.clickComputeEngine();
+        fillCalculatorInstancesData(calculatorPage);
+        fillCalculatorMachineData(calculatorPage);
+        fillCalculatorSoftwareAndSsdData(calculatorPage);
+        fillCalculatorGpuData(calculatorPage);
+        fillCalculatorLocationAndUsageData(calculatorPage);
+    }
+
+    private void fillCalculatorGpuData(GoogleCloudCalculatorPage calculatorPage) {
+        CalculatorGpuData gpuData = CalculatorGpuDataCreator.create().
+                withGpuNumber().
+                withGpuType().
+                build();
+        calculatorPage.
+                clickAddGpu().
+                setNumberOfGPUs(gpuData.getNumberOfGPU()).
+                setGpuType(gpuData.getGpuType());
+    }
+
+    private void fillCalculatorInstancesData(GoogleCloudCalculatorPage calculatorPage) {
+        CalculatorInstancesData instancesData = CalculatorInstancesDataCreator.create().
+                withInstancesNumber().
+                withInstancesPurpose().
+                build();
+        calculatorPage.
+                setNumberOfInstances(instancesData.getNumberOfInstances()).
+                setWhatAreTheseInstanceFor(instancesData.getForWhatInstance());
+    }
+
+    private void fillCalculatorMachineData(GoogleCloudCalculatorPage calculatorPage) {
+        CalculatorMachineData machineData = CalculatorMachineDataCreator.create().
+                withMachineClass().
+                withMachineType().
+                build();
+        calculatorPage.
+                setMachineClass(machineData.getMachineClass()).
+                setMachineType(machineData.getMachineType());
+    }
+
+    private void fillCalculatorSoftwareAndSsdData(GoogleCloudCalculatorPage calculatorPage) {
+        CalculatorSoftwareAndSsdData softwareAndSsdData = CalculatorSoftwareAndSsdDataCreator.create().
                 withSoftware().
                 withSsd().
+                build();
+        calculatorPage.
+                setOperationSystemOrSoftware(softwareAndSsdData.getOperationSystemAndSoftware()).
+                setLocalSSD(softwareAndSsdData.getLocalSSD());
+    }
+
+    private void fillCalculatorLocationAndUsageData(GoogleCloudCalculatorPage calculatorPage) {
+        CalculatorLocationAndUsageData locationAndUsageData = CalculatorLocationAndUsageDataCreator.create().
                 withLocation().
                 withCommitedUsage().
                 build();
-        GoogleCloudCalculatorPage calculatorPage = new GoogleCloudCalculatorPage(getDriver());
         calculatorPage.
-                setOperationSystemOrSoftware(otherCalculatorData.getOperationSystemAndSoftware()).
-                setLocalSSD(otherCalculatorData.getLocalSSD()).
-                setDataCenterLocation(otherCalculatorData.getDataCenterLocation()).
-                setCommitedUsage(otherCalculatorData.getCommitedUsage());
-        return new GoogleCloudCalculatorEstimatePage(getDriver());
+                setDataCenterLocation(locationAndUsageData.getDataCenterLocation()).
+                setCommitedUsage(locationAndUsageData.getCommitedUsage());
     }
 }

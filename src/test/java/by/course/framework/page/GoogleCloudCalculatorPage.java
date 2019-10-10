@@ -1,13 +1,5 @@
 package by.course.framework.page;
 
-import by.course.framework.model.GpuData;
-import by.course.framework.model.InstancesData;
-import by.course.framework.model.MachineData;
-import by.course.framework.model.OtherCalculatorData;
-import by.course.framework.service.GpuDataCreator;
-import by.course.framework.service.InstancesDataCreator;
-import by.course.framework.service.MachineDataCreator;
-import by.course.framework.service.OtherCalculatorDataCreator;
 import by.course.framework.test.GoogleCloudTest;
 import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.*;
@@ -53,58 +45,60 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(xpath = "//*[@ng-click='listingCtrl.addComputeServer(ComputeEngineForm);']")
     private WebElement addToEstimate;
 
-    public GoogleCloudTest switchToCalculatorFormIframe() {
+    public GoogleCloudCalculatorPage switchToCalculatorFormIframe() {
         getDriver().switchTo().frame(iFrame);
-        return new GoogleCloudTest();
+        return this;
     }
 
-    private void selectComputeEngine() {
-        computeEngineSectionBtn.click();
+    public void clickComputeEngine() {
+        clickOnWebElement(computeEngineSectionBtn);
     }
 
-    private void setNumberOfInstances(int numberOfInstances) {
+    public GoogleCloudCalculatorPage setNumberOfInstances(int numberOfInstances) {
         this.numberOfInstances.sendKeys(Integer.toString(numberOfInstances));
+        return this;
     }
 
-    private void setWhatAreTheseInstanceFor(String instancesFor) {
+    public void setWhatAreTheseInstanceFor(String instancesFor) {
         whatAreTheseInstanceFor.sendKeys(instancesFor);
     }
 
     public GoogleCloudCalculatorPage setOperationSystemOrSoftware(String operationSystem) {
-        operationSystemOrSoftwareList.click();
+        clickOnWebElement(operationSystemOrSoftwareList);
         chooseElementInDropDownList(operationSystem);
         return this;
     }
 
-    private void setMachineClass(String machineClass) {
-        machineClassList.sendKeys(Keys.ENTER);
+    public GoogleCloudCalculatorPage setMachineClass(String machineClass) {
+        clickOnWebElement(machineClassList);
         chooseElementInDropDownList(machineClass);
+        return this;
     }
 
-    private void setMachineType(String machineType) {
-        BrowserUtils.scrollToElement(getDriver(), machineTypeList);
-        machineTypeList.sendKeys(Keys.ENTER);
+    public void setMachineType(String machineType) {
+        clickOnWebElement(machineTypeList);
         chooseElementInDropDownList(machineType);
     }
 
-    private void addGPUs() {
-        addGPUs.click();
+    public GoogleCloudCalculatorPage clickAddGpu() {
+        clickOnWebElement(addGPUs);
+        return this;
     }
 
-    private void setNumberOfGPUs(int numberOfGPUs) {
+    public GoogleCloudCalculatorPage setNumberOfGPUs(int numberOfGPUs) {
         waitUntilPresenceOfElementLocatedAndClick(By.xpath(NUMBER_OF_GPU_LIST_XPATH));
         chooseElementInDropDownList(Integer.toString(numberOfGPUs));
+        return this;
     }
 
-    private void setGpuType(String gpuType) {
+    public void setGpuType(String gpuType) {
         waitUntilPresenceOfElementLocatedAndClick(By.xpath(GPU_TYPE_LIST_XPATH));
         chooseElementInDropDownList(gpuType);
     }
 
-    public GoogleCloudCalculatorPage setLocalSSD(String localSSD) {
-        localSsdList.sendKeys(Keys.ENTER);
+    public void setLocalSSD(String localSSD) {
+        clickOnWebElement(localSsdList);
         chooseElementInDropDownList(localSSD);
-        return this;
     }
 
     public GoogleCloudCalculatorPage setDataCenterLocation(String dataCenterLocation) {
@@ -114,35 +108,14 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public void setCommitedUsage(String commitedUsage) {
-        commitedUsageList.sendKeys(Keys.ENTER);
+        clickOnWebElement(commitedUsageList);
         chooseElementInDropDownList(commitedUsage);
     }
 
-    private void addToEstimate() {
-        addToEstimate.click();
+    public GoogleCloudCalculatorEstimatePage clickAddToEstimate() {
+        clickOnWebElement(addToEstimate);
+        return new GoogleCloudCalculatorEstimatePage(getDriver());
     }
-
-    //Split to serveral meaningful methods and don't do it on PAGE
-//    public GoogleCloudCalculatorEstimatePage fillComputeEngineForm() {
-//        InstancesData instancesData = InstancesDataCreator.withCredentialsFromProperty();
-//        MachineData machineData = MachineDataCreator.withCredentialsFromProperty();
-//        GpuData gpuData = GpuDataCreator.withCredentialsFromProperty();
-//
-//
-//        selectComputeEngine();
-//        setNumberOfInstances(instancesData.getNumberOfInstances());
-//        setWhatAreTheseInstanceFor(instancesData.getForWhatInstance());
-//
-//        setMachineClass(machineData.getMachineClass());
-//        setMachineType(machineData.getMachineType());
-//        addGPUs();
-//        setNumberOfGPUs(gpuData.getNumberOfGPU());
-//        setGpuType(gpuData.getGpuType());
-//        setLocalSSD(otherData.getLocalSSD());
-
-//        addToEstimate();
-//        return new GoogleCloudCalculatorEstimatePage(getDriver());
-//    }
 
     private void chooseElementInDropDownList(String elementXpath) {
         waitUntilPresenceOfElementLocatedAndClick(By.xpath(String.format(ELEMENT_IN_DROP_DOWN_LIST_XPATH, elementXpath)));

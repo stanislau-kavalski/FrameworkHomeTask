@@ -30,7 +30,7 @@ public class BrowserUtils {
         return driver.manage().window().getSize().getWidth();
     }
 
-    public static void scrollToElement(WebDriver driver, WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    public static void scrollToElementAndClick(WebDriver driver, WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 }

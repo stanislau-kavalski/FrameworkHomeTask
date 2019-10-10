@@ -10,7 +10,7 @@ public class GoogleCloudProductsPage extends AbstractPage {
     private WebElement seePricingBtn;
 
     public GoogleCloudPricingPage openSeePricing() {
-        seePricingBtn.click();
+        clickOnWebElement(seePricingBtn);
         return new GoogleCloudPricingPage(getDriver());
     }
 

@@ -16,7 +16,7 @@ public class GoogleCloudCalculatorEstimatePage extends AbstractPage {
     private WebElement totalPrice;
 
     public MinuteMailHomePage pressEmailEstimate() {
-        waitUntilElementToBeClickableAndSendKeys(emailEstimate);
+        waitUntilElementToBeClickableAndClick(emailEstimate);
         waitUntilPresenceOfElementLocated(By.name(EMAIL_FORM_NAME));
         return new MinuteMailHomePage(getDriver());
     }

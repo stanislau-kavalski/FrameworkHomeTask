@@ -1,14 +1,9 @@
 package by.course.framework.model;
 
-public class InstancesData {
+public class CalculatorInstancesData {
 
         private int numberOfInstances;
         private String forWhatInstance;
-
-        public InstancesData(int numberOfInstances, String forWhatInstance) {
-                this.numberOfInstances = numberOfInstances;
-                this.forWhatInstance = forWhatInstance;
-        }
 
         public int getNumberOfInstances() {
                 return numberOfInstances;
