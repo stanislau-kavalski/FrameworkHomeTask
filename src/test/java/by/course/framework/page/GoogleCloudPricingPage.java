@@ -14,6 +14,10 @@ public class GoogleCloudPricingPage extends AbstractPage {
     @FindBy(linkText = "Calculators")
     private WebElement calculatorsBtn;
 
+    public GoogleCloudPricingPage(WebDriver driver) {
+        super(driver);
+    }
+
     public GoogleCloudCalculatorPage openCalculators() {
         if(BrowserUtils.getWindowWidth(getDriver()) < MIN_WINDOW_WIDTH) {
             getDriver().navigate().refresh();
@@ -21,9 +25,5 @@ public class GoogleCloudPricingPage extends AbstractPage {
         }
         clickOnWebElement(calculatorsBtn);
         return new GoogleCloudCalculatorPage(getDriver());
-    }
-
-    public GoogleCloudPricingPage(WebDriver driver) {
-        super(driver);
     }
 }

@@ -15,6 +15,12 @@ public abstract class AbstractPage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
+    protected AbstractPage(WebDriver driver){
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, ConfigTimeoutData.getCommonTimeout());
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, ConfigTimeoutData.getCommonTimeout()),this);
+    }
+
     protected void clickOnWebElement(WebElement element) {
         BrowserUtils.scrollToElementAndClick(getDriver(), element);
     }
@@ -44,11 +50,5 @@ public abstract class AbstractPage {
 
     protected WebDriver getDriver() {
         return driver;
-    }
-
-    protected AbstractPage(WebDriver driver){
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, ConfigTimeoutData.getCommonTimeout());
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, ConfigTimeoutData.getCommonTimeout()),this);
     }
 }

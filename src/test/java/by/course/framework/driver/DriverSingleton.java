@@ -9,10 +9,6 @@ public class DriverSingleton {
 
     private static WebDriver driver;
 
-    private DriverSingleton() {
-        throw new AssertionError("Cannot be instantiated directly.");
-    }
-
     public static WebDriver getDriver() {
         if (null == driver){
             switch (System.getProperty("browser")){
@@ -46,5 +42,9 @@ public class DriverSingleton {
     public static void closeDriver() {
         driver.quit();
         driver = null;
+    }
+
+    private DriverSingleton() {
+        throw new AssertionError("Cannot be instantiated directly.");
     }
 }

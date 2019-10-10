@@ -19,6 +19,10 @@ public class MinuteMailHomePage extends AbstractPage {
     @FindBy(id = "mailAddress")
     private WebElement email;
 
+    public MinuteMailHomePage(WebDriver driver) {
+        super(driver);
+    }
+
     public MinuteMailHomePage openMailHomePage() {
         BrowserUtils.openNewTab(getDriver());
         BrowserUtils.switchToTab(getDriver(), 1);
@@ -45,9 +49,5 @@ public class MinuteMailHomePage extends AbstractPage {
     private void waitUntilEmailComesAndOpenIt() {
         new WebDriverWait(getDriver(), ConfigTimeoutData.getEmailTimeout())
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(GOOGLE_EMAIL_MESSAGE_XPATH))).sendKeys(Keys.ENTER);
-    }
-
-    public MinuteMailHomePage(WebDriver driver) {
-        super(driver);
     }
 }

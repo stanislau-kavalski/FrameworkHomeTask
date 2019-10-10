@@ -16,12 +16,12 @@ public class ConfigHomePageData {
         return googleCloudHomePageUrl;
     }
 
-    private static void setGoogleCloudHomePageUrl(String googleCloudHomePageUrl) {
-        ConfigHomePageData.googleCloudHomePageUrl = googleCloudHomePageUrl;
-    }
-
     public static String getMinuteMailHomePageUrl() {
         return minuteMailHomePageUrl;
+    }
+
+    private static void setGoogleCloudHomePageUrl(String googleCloudHomePageUrl) {
+        ConfigHomePageData.googleCloudHomePageUrl = googleCloudHomePageUrl;
     }
 
     private static void setMinuteMailHomePageUrl(String minuteMailHomePageUrl) {

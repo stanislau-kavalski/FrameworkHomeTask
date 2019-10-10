@@ -1,12 +1,10 @@
 package by.course.framework.page;
 
-import by.course.framework.test.GoogleCloudTest;
-import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
 public class GoogleCloudCalculatorPage extends AbstractPage {
-//Follow of modifiers
+
     private static final String NUMBER_OF_GPU_LIST_XPATH = "//*[@ng-model='listingCtrl.computeServer.gpuCount']";
     private static final String GPU_TYPE_LIST_XPATH = "//*[@ng-model='listingCtrl.computeServer.gpuType']";
     private static final String DATA_CENTER_LOCATION_LIST_XPATH = "//*[@ng-model='listingCtrl.computeServer.location']";
@@ -44,6 +42,10 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
 
     @FindBy(xpath = "//*[@ng-click='listingCtrl.addComputeServer(ComputeEngineForm);']")
     private WebElement addToEstimate;
+
+    public GoogleCloudCalculatorPage(WebDriver driver) {
+        super(driver);
+    }
 
     public GoogleCloudCalculatorPage switchToCalculatorFormIframe() {
         getDriver().switchTo().frame(iFrame);
@@ -119,9 +121,5 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
 
     private void chooseElementInDropDownList(String elementXpath) {
         waitUntilPresenceOfElementLocatedAndClick(By.xpath(String.format(ELEMENT_IN_DROP_DOWN_LIST_XPATH, elementXpath)));
-    }
-
-    public GoogleCloudCalculatorPage(WebDriver driver) {
-        super(driver);
     }
 }

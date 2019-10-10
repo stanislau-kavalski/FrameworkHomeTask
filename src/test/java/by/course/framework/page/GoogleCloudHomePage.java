@@ -10,6 +10,10 @@ public class GoogleCloudHomePage extends AbstractPage {
     @FindBy(linkText = "See products")
     private WebElement seeProductsBtn;
 
+    public GoogleCloudHomePage(WebDriver driver) {
+        super(driver);
+    }
+
     public GoogleCloudHomePage openHomePage() {
         getDriver().get(ConfigHomePageData.getGoogleCloudHomePageUrl());
         return this;
@@ -18,9 +22,5 @@ public class GoogleCloudHomePage extends AbstractPage {
     public GoogleCloudProductsPage openProductsPage() {
         clickOnWebElement(seeProductsBtn);
         return new GoogleCloudProductsPage(getDriver());
-    }
-
-    public GoogleCloudHomePage(WebDriver driver) {
-        super(driver);
     }
 }

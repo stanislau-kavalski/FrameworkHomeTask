@@ -15,6 +15,10 @@ public class GoogleCloudCalculatorEstimatePage extends AbstractPage {
     @FindBy(xpath = "//*[@class='ng-binding'][contains(text(), 'Total Estimated Cost')]")
     private WebElement totalPrice;
 
+    public GoogleCloudCalculatorEstimatePage(WebDriver driver) {
+        super(driver);
+    }
+
     public MinuteMailHomePage pressEmailEstimate() {
         waitUntilElementToBeClickableAndClick(emailEstimate);
         waitUntilPresenceOfElementLocated(By.name(EMAIL_FORM_NAME));
@@ -25,9 +29,5 @@ public class GoogleCloudCalculatorEstimatePage extends AbstractPage {
         String totalPrice = this.totalPrice.getText().replaceAll("[^0-9.,]+","");
         totalPrice = totalPrice.substring(0, totalPrice.length() - 1);
         return totalPrice;
-    }
-
-    public GoogleCloudCalculatorEstimatePage(WebDriver driver) {
-        super(driver);
     }
 }

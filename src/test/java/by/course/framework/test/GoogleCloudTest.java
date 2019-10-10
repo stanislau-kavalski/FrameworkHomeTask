@@ -18,9 +18,7 @@ public class GoogleCloudTest extends CommonConditions {
                 openSeePricing().
                 openCalculators().
                 switchToCalculatorFormIframe();
-
         fillCalculatorData(calculatorPage);
-
         calculatorPage.
                 clickAddToEstimate().
                 pressEmailEstimate().

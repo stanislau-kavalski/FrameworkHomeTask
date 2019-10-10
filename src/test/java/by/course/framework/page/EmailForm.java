@@ -18,10 +18,9 @@ public class EmailForm extends AbstractPage {
     @FindBy(xpath = "//*[@ng-click='emailQuote.emailQuote(true); emailQuote.$mdDialog.hide()']")
     private WebElement sendEmailBtn;
 
-    private void switchToIframe() {
-        if (BrowserUtils.getBrowserName(getDriver()).equals("chrome")) {
-            getDriver().switchTo().frame(iFrame);
-        }
+    public EmailForm(WebDriver driver, String email) {
+        super(driver);
+        this.email = email;
     }
 
     public EmailForm openEmailForm() {
@@ -40,8 +39,9 @@ public class EmailForm extends AbstractPage {
         waitUntilInvisibilityOfElementLocated(By.name(EMAIL_FORM_NAME));
     }
 
-    public EmailForm(WebDriver driver, String email) {
-        super(driver);
-        this.email = email;
+    private void switchToIframe() {
+        if (BrowserUtils.getBrowserName(getDriver()).equals("chrome")) {
+            getDriver().switchTo().frame(iFrame);
+        }
     }
 }

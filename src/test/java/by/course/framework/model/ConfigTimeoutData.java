@@ -16,14 +16,13 @@ public class ConfigTimeoutData {
         return commonTimeout;
     }
 
-    private static void setCommonTimeout(int commonTimeout) {
-        ConfigTimeoutData.commonTimeout = commonTimeout;
-    }
-
     public static int getEmailTimeout() {
         return emailTimeout;
     }
 
+    private static void setCommonTimeout(int commonTimeout) {
+        ConfigTimeoutData.commonTimeout = commonTimeout;
+    }
     private static void setEmailTimeout(int emailTimeout) {
         ConfigTimeoutData.emailTimeout = emailTimeout;
     }
