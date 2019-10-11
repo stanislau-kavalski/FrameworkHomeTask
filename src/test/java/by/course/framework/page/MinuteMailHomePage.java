@@ -24,6 +24,7 @@ public class MinuteMailHomePage extends AbstractPage {
     }
 
     public MinuteMailHomePage openMailHomePage() {
+        //Создать соответствующие методы на AbstractPage.
         BrowserUtils.openNewTab(getDriver());
         BrowserUtils.switchToTab(getDriver(), 1);
         getDriver().get(ConfigHomePageData.getMinuteMailHomePageUrl());

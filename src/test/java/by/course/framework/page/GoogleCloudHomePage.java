@@ -15,6 +15,7 @@ public class GoogleCloudHomePage extends AbstractPage {
     }
 
     public GoogleCloudHomePage openHomePage() {
+        //Создать новый метод на AbstractPage
         getDriver().get(ConfigHomePageData.getGoogleCloudHomePageUrl());
         return this;
     }
