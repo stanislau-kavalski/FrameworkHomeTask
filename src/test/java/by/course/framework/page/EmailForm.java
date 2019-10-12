@@ -1,8 +1,12 @@
 package by.course.framework.page;
 
-import by.course.framework.utils.BrowserUtils;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import by.course.framework.utils.BrowserUtils;
 
 public class EmailForm extends AbstractPage {
 
@@ -19,17 +23,21 @@ public class EmailForm extends AbstractPage {
     private WebElement sendEmailBtn;
 
     public EmailForm(WebDriver driver, String email) {
+        // не надо сетать имейл сюда. Его надо передавать в enterEmail()
         super(driver);
         this.email = email;
     }
 
     public EmailForm openEmailForm() {
+        // определить на AbstractPage метод switchToTab(int) и использовать.
+        // Кстати, BrowserUtils тогда тебе не нужен вовсе
         BrowserUtils.switchToTab(getDriver(), 0);
         switchToIframe();
         return this;
     }
 
     public EmailForm enterEmail() {
+        //определить на AbstractPage метод setValue(WebElement, String) и использовать
         emailField.sendKeys(Keys.ENTER, email);
         return this;
     }
@@ -40,6 +48,9 @@ public class EmailForm extends AbstractPage {
     }
 
     private void switchToIframe() {
+        // определить на AbstractPage метод switchTo(WebElement) и использовать
+        // И логику по обработке имени браузера засунуть туда же засунуть туда же
+        // вместо String.equals(String) используй плиз StringUtils.equalsIgnoreCase()
         if (BrowserUtils.getBrowserName(getDriver()).equals("chrome")) {
             getDriver().switchTo().frame(iFrame);
         }

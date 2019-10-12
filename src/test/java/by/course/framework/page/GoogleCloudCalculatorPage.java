@@ -48,6 +48,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage switchToCalculatorFormIframe() {
+        //Использовать новый метод с AbstractPage
         getDriver().switchTo().frame(iFrame);
         return this;
     }
@@ -57,11 +58,13 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage setNumberOfInstances(int numberOfInstances) {
+        //Использовать новый метод с AbstractPage
         this.numberOfInstances.sendKeys(Integer.toString(numberOfInstances));
         return this;
     }
 
     public void setWhatAreTheseInstanceFor(String instancesFor) {
+        //Использовать новый метод с AbstractPage
         whatAreTheseInstanceFor.sendKeys(instancesFor);
     }
 

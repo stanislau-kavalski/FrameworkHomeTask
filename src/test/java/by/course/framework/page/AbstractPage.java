@@ -12,15 +12,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPage {
 
+    /**
+     * Давай сделаем красивее.
+     * 1. Не надо делать драйвер протектед. Никому он там в наследниках не нужен
+     * 2. Определи на этой странице методы обертки для вебдрайвер действий:
+     * clickOnWebElement(WebElement element) - уже есть молодец
+     * остальные методы я описал на других Page* классах
+     *
+     *
+     */
     protected WebDriver driver;
     protected WebDriverWait wait;
 
     protected AbstractPage(WebDriver driver){
+        // Почему бы драйвер не получать напрямую из DriverSingleton?
         this.driver = driver;
         this.wait = new WebDriverWait(driver, ConfigTimeoutData.getCommonTimeout());
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, ConfigTimeoutData.getCommonTimeout()),this);
     }
 
+    //Название изменить на clickElement
     protected void clickOnWebElement(WebElement element) {
         BrowserUtils.scrollToElementAndClick(getDriver(), element);
     }
@@ -48,6 +59,7 @@ public abstract class AbstractPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(element)).getText();
     }
 
+    // Этот метод можно будет убрать. Страницы потомки не будут напрямую работать с драйвером. А только с методами этой страницы.
     protected WebDriver getDriver() {
         return driver;
     }

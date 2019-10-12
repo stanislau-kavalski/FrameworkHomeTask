@@ -26,8 +26,14 @@ public class GoogleCloudCalculatorEstimatePage extends AbstractPage {
     }
 
     public String getTotalPrice() {
+        // Не делай "", делай StringUtils.EMPTY
+        // [^0-9.,]+  в константы
         String totalPrice = this.totalPrice.getText().replaceAll("[^0-9.,]+","");
         totalPrice = totalPrice.substring(0, totalPrice.length() - 1);
+        /*Ненужный ассайнмент.
+        Делать так не нужно. Можно просто
+            return totalPrice.substring(0, totalPrice.length() - 1);*/
         return totalPrice;
     }
+
 }

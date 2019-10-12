@@ -9,6 +9,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.util.ArrayList;
 
 public class BrowserUtils {
+    //Этот класс не нужен.
+
 
     private static ArrayList<String> tabs;
 

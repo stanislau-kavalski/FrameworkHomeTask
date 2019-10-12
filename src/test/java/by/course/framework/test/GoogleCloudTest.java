@@ -41,6 +41,12 @@ public class GoogleCloudTest extends CommonConditions {
     }
 
     private void fillCalculatorData(GoogleCloudCalculatorPage calculatorPage) {
+        // Короче, тут намудрили, я немного недопонял и тебя запутал
+        // Предлагаю исходить из того, что эти все данные одинаковые на всех environments
+        // Тогда хранить их в пропертях смысла нет. Следовательно, у нас остается только место хранения.
+        // Есть два условных варианта: хранить прямо в тесте или в каком-то репозитории: например, в базе, файле, где угодно
+        // Предлагаю в следствие условности происходящего хранить в самом тесте.
+        // Например, String gpuType = "Some Type". Если есть возражения, пиши, обсудим
         calculatorPage.clickComputeEngine();
         fillCalculatorInstancesData(calculatorPage);
         fillCalculatorMachineData(calculatorPage);

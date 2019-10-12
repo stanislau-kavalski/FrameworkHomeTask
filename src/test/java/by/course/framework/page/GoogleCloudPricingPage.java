@@ -19,6 +19,7 @@ public class GoogleCloudPricingPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage openCalculators() {
+        //Создать соответствующие методы на AbstractPage. Такие методы - не очень правильный подход, но в рамках примера - нормально
         if(BrowserUtils.getWindowWidth(getDriver()) < MIN_WINDOW_WIDTH) {
             getDriver().navigate().refresh();
             waitUntilPresenceOfElementLocatedAndClick(By.className(CLOUD_JUMP_MENU_CLASSNAME));

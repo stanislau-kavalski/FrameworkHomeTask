@@ -54,5 +54,11 @@
                 </configuration>
             </plugin>
         </plugins>
+        <!--Сделай плиз profile, где будут указаны три профайла: dev, qa, staging. По дефолту активирован dev.
+        Отсюда же должен сетаться инваермент, который будет использоваться в System.getProperty("environment")
+        Если не разберешься как сделать - говори, помогу
+
+        Соответственно и тесты будут запускать mvn clean install -Pdev
+        -->
     </build>
 </project>
