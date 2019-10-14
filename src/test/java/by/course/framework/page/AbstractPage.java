@@ -1,6 +1,7 @@
 package by.course.framework.page;
 
-import by.course.framework.model.ConfigTimeoutData;
+import by.course.framework.service.ConfigReader;
+import by.course.framework.service.Constants;
 import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,8 +28,8 @@ public abstract class AbstractPage {
     protected AbstractPage(WebDriver driver){
         // Почему бы драйвер не получать напрямую из DriverSingleton?
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, ConfigTimeoutData.getCommonTimeout());
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, ConfigTimeoutData.getCommonTimeout()),this);
+        this.wait = new WebDriverWait(driver, Integer.parseInt(ConfigReader.get(Constants.COMMON_TIMEOUT)));
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, Integer.parseInt(ConfigReader.get(Constants.COMMON_TIMEOUT))),this);
     }
 
     //Название изменить на clickElement

@@ -1,7 +1,7 @@
 package by.course.framework.page;
 
-import by.course.framework.model.ConfigHomePageData;
-import by.course.framework.model.ConfigTimeoutData;
+import by.course.framework.service.ConfigReader;
+import by.course.framework.service.Constants;
 import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -27,7 +27,7 @@ public class MinuteMailHomePage extends AbstractPage {
         //Создать соответствующие методы на AbstractPage.
         BrowserUtils.openNewTab(getDriver());
         BrowserUtils.switchToTab(getDriver(), 1);
-        getDriver().get(ConfigHomePageData.getMinuteMailHomePageUrl());
+        getDriver().get(ConfigReader.get(Constants.MINUTE_MAIL_HOMEPAGE_URL));
         return this;
     }
 
@@ -48,7 +48,7 @@ public class MinuteMailHomePage extends AbstractPage {
     }
 
     private void waitUntilEmailComesAndOpenIt() {
-        new WebDriverWait(getDriver(), ConfigTimeoutData.getEmailTimeout())
+        new WebDriverWait(getDriver(), Integer.parseInt(ConfigReader.get(Constants.EMAIL_TIMEOUT)))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(GOOGLE_EMAIL_MESSAGE_XPATH))).sendKeys(Keys.ENTER);
     }
 }

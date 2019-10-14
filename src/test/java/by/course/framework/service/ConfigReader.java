@@ -2,11 +2,11 @@ package by.course.framework.service;
 
 import java.util.ResourceBundle;
 
-public class ConfigDataReader {
+public class ConfigReader {
 
     private static ResourceBundle resourceBundle = ResourceBundle.getBundle("configs");
 
-    public static String getTestData(String key) {
+    public static String get(String key) {
         return resourceBundle.getString(key);
     }
 }
