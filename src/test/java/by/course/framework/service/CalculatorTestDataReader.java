@@ -9,18 +9,20 @@ public class CalculatorTestDataReader {
 
     private static final String CALCULATOR_DATA_PATH = "src/test/resources/data/";
     private static final String CALCULATOR_DATA_FILE_EXTENSION = ".data.properties";
-    private static Properties calculatorData = new Properties();
+    private static Properties calculatorData;
     private static InputStream input = createInputStream();
 
-    public static String getTestData(String key) {
+    static {
         try {
-            // Это  calculatorData.load(input); надо вынести в статический блок. Т.к. тебе явно не надо, чтобы это происходило при каждом обращении к пропертям
+            calculatorData = new Properties();
             calculatorData.load(input);
-            return calculatorData.getProperty(key);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+    }
+
+    public static String getTestData(String key) {
+        return calculatorData.getProperty(key);
     }
 
     private static FileInputStream createInputStream() {

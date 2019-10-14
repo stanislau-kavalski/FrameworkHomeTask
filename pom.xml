@@ -62,7 +62,6 @@
         </dependency>
     </dependencies>
 
-    <!--Хорошо, это одно из решений, почему бы и нет-->
     <build>
         <plugins>
             <plugin>

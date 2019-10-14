@@ -14,19 +14,7 @@ public class DriverSingleton {
     }
 
     public static WebDriver getDriver() {
-        /**
-         * Давай так не делать. Получается две разные проверки в одну строчку. Определись, чего ты хочешь:
-         * 1. Если ты хочешь, чтобы у тебя browser никогда не был null, то сделай проверку и кинь ошибку
-         * типа if (null == browser) throw и описание ошибки, чтобы пользователь понял, что делать
-         * 2. Если ты хочешь, чтобы в любом случае запускалось, сделай явно
-         *   switch(System.getProperty("browser", "chrome")) // в этом случае, если будет null, то выберется chrome
-         *   Но на мой взгляд это не явно. Лучше всегда задавать ограничения
-         *
-         *   И при сравнении лучше null ставить вперед null == System.getProperty("browser")
-         *
-         */
-
-        if (driver == null && System.getProperty("browser") != null){
+        if (null != System.getProperty("browser")){
             switch (System.getProperty("browser")){
                 case "firefox": {
                     driver = createFirefoxDriver();
