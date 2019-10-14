@@ -12,7 +12,7 @@ public class GoogleCloudTest extends CommonConditions {
 
     @BeforeMethod(alwaysRun = true)
     public void openCalculatorAndAddToEstimate() {
-        GoogleCloudCalculatorPage calculatorPage = new GoogleCloudHomePage(getDriver()).
+        GoogleCloudCalculatorPage calculatorPage = new GoogleCloudHomePage().
                 openHomePage().
                 openProductsPage().
                 openSeePricing().
@@ -31,10 +31,10 @@ public class GoogleCloudTest extends CommonConditions {
 
     @Test
     public void checkCostInEstimatePageAndCostInEmail() {
-        GoogleCloudCalculatorEstimatePage estimatePage = new GoogleCloudCalculatorEstimatePage(getDriver());
+        GoogleCloudCalculatorEstimatePage estimatePage = new GoogleCloudCalculatorEstimatePage();
         String costInEstimatePage = estimatePage.getTotalPrice();
         BrowserUtils.switchToTab(getDriver(), 1);
-        MinuteMailHomePage emailPage = new MinuteMailHomePage(getDriver());
+        MinuteMailHomePage emailPage = new MinuteMailHomePage();
         emailPage.OpenEmail();
         String costInEmail = emailPage.getTotalPrice();
         Assert.assertEquals(costInEmail, costInEstimatePage);

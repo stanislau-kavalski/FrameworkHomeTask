@@ -1,7 +1,6 @@
 package by.course.framework.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,14 +14,10 @@ public class GoogleCloudCalculatorEstimatePage extends AbstractPage {
     @FindBy(xpath = "//*[@class='ng-binding'][contains(text(), 'Total Estimated Cost')]")
     private WebElement totalPrice;
 
-    public GoogleCloudCalculatorEstimatePage(WebDriver driver) {
-        super(driver);
-    }
-
     public MinuteMailHomePage pressEmailEstimate() {
         waitUntilElementToBeClickableAndClick(emailEstimate);
         waitUntilPresenceOfElementLocated(By.name(EMAIL_FORM_NAME));
-        return new MinuteMailHomePage(getDriver());
+        return new MinuteMailHomePage();
     }
 
     public String getTotalPrice() {

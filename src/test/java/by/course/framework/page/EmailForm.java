@@ -2,7 +2,6 @@ package by.course.framework.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,9 +21,8 @@ public class EmailForm extends AbstractPage {
     @FindBy(xpath = "//*[@ng-click='emailQuote.emailQuote(true); emailQuote.$mdDialog.hide()']")
     private WebElement sendEmailBtn;
 
-    public EmailForm(WebDriver driver, String email) {
+    public EmailForm(String email) {
         // не надо сетать имейл сюда. Его надо передавать в enterEmail()
-        super(driver);
         this.email = email;
     }
 

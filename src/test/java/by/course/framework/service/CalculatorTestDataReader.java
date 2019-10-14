@@ -9,13 +9,11 @@ public class CalculatorTestDataReader {
 
     private static final String CALCULATOR_DATA_PATH = "src/test/resources/data/";
     private static final String CALCULATOR_DATA_FILE_EXTENSION = ".data.properties";
-    private static Properties calculatorData;
+    private static Properties calculatorData = new Properties();
     private static InputStream input = createInputStream();
 
     static {
         try {
-            //а зачем тут создавать объект Properties?
-            calculatorData = new Properties();
             calculatorData.load(input);
         } catch (IOException e) {
             e.printStackTrace();

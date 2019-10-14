@@ -8,13 +8,12 @@ import org.testng.annotations.*;
 @Listeners({TestListener.class})
 public class CommonConditions {
 
-    //зачем protected
-    protected WebDriver driver;
+    private WebDriver driver;
 
     @BeforeClass()
     public void setUp()
     {
-        driver = DriverSingleton.getDriver();
+        driver = DriverSingleton.setDriver();
     }
 
     @AfterClass(alwaysRun = true)

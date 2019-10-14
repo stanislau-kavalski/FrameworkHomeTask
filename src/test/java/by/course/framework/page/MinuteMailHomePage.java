@@ -5,7 +5,6 @@ import by.course.framework.service.Constants;
 import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,10 +18,6 @@ public class MinuteMailHomePage extends AbstractPage {
     @FindBy(id = "mailAddress")
     private WebElement email;
 
-    public MinuteMailHomePage(WebDriver driver) {
-        super(driver);
-    }
-
     public MinuteMailHomePage openMailHomePage() {
         //Создать соответствующие методы на AbstractPage.
         BrowserUtils.openNewTab(getDriver());
@@ -32,7 +27,7 @@ public class MinuteMailHomePage extends AbstractPage {
     }
 
     public EmailForm getEmail() {
-        return new EmailForm(getDriver(), email.getAttribute("value"));
+        return new EmailForm(email.getAttribute("value"));
     }
 
     public void OpenEmail() {

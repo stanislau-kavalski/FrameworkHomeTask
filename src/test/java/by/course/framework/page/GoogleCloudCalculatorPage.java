@@ -43,10 +43,6 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(xpath = "//*[@ng-click='listingCtrl.addComputeServer(ComputeEngineForm);']")
     private WebElement addToEstimate;
 
-    public GoogleCloudCalculatorPage(WebDriver driver) {
-        super(driver);
-    }
-
     public GoogleCloudCalculatorPage switchToCalculatorFormIframe() {
         //Использовать новый метод с AbstractPage
         getDriver().switchTo().frame(iFrame);
@@ -54,7 +50,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public void clickComputeEngine() {
-        clickOnWebElement(computeEngineSectionBtn);
+        clickElement(computeEngineSectionBtn);
     }
 
     public GoogleCloudCalculatorPage setNumberOfInstances(int numberOfInstances) {
@@ -69,24 +65,24 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage setOperationSystemOrSoftware(String operationSystem) {
-        clickOnWebElement(operationSystemOrSoftwareList);
+        clickElement(operationSystemOrSoftwareList);
         chooseElementInDropDownList(operationSystem);
         return this;
     }
 
     public GoogleCloudCalculatorPage setMachineClass(String machineClass) {
-        clickOnWebElement(machineClassList);
+        clickElement(machineClassList);
         chooseElementInDropDownList(machineClass);
         return this;
     }
 
     public void setMachineType(String machineType) {
-        clickOnWebElement(machineTypeList);
+        clickElement(machineTypeList);
         chooseElementInDropDownList(machineType);
     }
 
     public GoogleCloudCalculatorPage clickAddGpu() {
-        clickOnWebElement(addGPUs);
+        clickElement(addGPUs);
         return this;
     }
 
@@ -102,7 +98,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public void setLocalSSD(String localSSD) {
-        clickOnWebElement(localSsdList);
+        clickElement(localSsdList);
         chooseElementInDropDownList(localSSD);
     }
 
@@ -113,13 +109,13 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public void setCommitedUsage(String commitedUsage) {
-        clickOnWebElement(commitedUsageList);
+        clickElement(commitedUsageList);
         chooseElementInDropDownList(commitedUsage);
     }
 
     public GoogleCloudCalculatorEstimatePage clickAddToEstimate() {
-        clickOnWebElement(addToEstimate);
-        return new GoogleCloudCalculatorEstimatePage(getDriver());
+        clickElement(addToEstimate);
+        return new GoogleCloudCalculatorEstimatePage();
     }
 
     private void chooseElementInDropDownList(String elementXpath) {

@@ -18,27 +18,26 @@ public abstract class AbstractPage {
      * Давай сделаем красивее.
      * 1. Не надо делать драйвер протектед. Никому он там в наследниках не нужен
      * 2. Определи на этой странице методы обертки для вебдрайвер действий:
-     * clickOnWebElement(WebElement element) - уже есть молодец
+     * clickElement(WebElement element) - уже есть молодец
      * остальные методы я описал на других Page* классах
      *
      *
      */
-    private WebDriver driver = DriverSingleton.getDriver();
-    private WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigReader.get(Constants.COMMON_TIMEOUT)));;
+    private WebDriver driver  = DriverSingleton.getDriver();
+    private WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigReader.get(Constants.COMMON_TIMEOUT)));
 
     protected AbstractPage(){
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, Integer.parseInt(ConfigReader.get(Constants.COMMON_TIMEOUT))),this);
     }
-
-    //Название изменить на clickElement
-    protected void clickOnWebElement(WebElement element) {
+    
+    protected void clickElement(WebElement element) {
         BrowserUtils.scrollToElementAndClick(getDriver(), element);
     }
 
     protected void waitUntilPresenceOfElementLocatedAndClick(By element) {
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
         WebElement webElement = getDriver().findElement(element);
-        clickOnWebElement(webElement);
+        clickElement(webElement);
     }
 
     protected void waitUntilPresenceOfElementLocated(By element) {
@@ -47,7 +46,7 @@ public abstract class AbstractPage {
 
     protected void waitUntilElementToBeClickableAndClick(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        clickOnWebElement(element);
+        clickElement(element);
     }
 
     protected void waitUntilInvisibilityOfElementLocated(By element) {
