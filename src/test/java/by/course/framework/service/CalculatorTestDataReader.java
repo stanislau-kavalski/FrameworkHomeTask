@@ -14,6 +14,7 @@ public class CalculatorTestDataReader {
 
     static {
         try {
+            //а зачем тут создавать объект Properties?
             calculatorData = new Properties();
             calculatorData.load(input);
         } catch (IOException e) {
