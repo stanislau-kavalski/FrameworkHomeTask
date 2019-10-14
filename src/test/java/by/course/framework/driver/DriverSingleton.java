@@ -14,6 +14,9 @@ public class DriverSingleton {
     }
 
     public static WebDriver getDriver() {
+        if (null != driver) {
+            return driver;
+        }
         if (null != System.getProperty("browser")){
             switch (System.getProperty("browser")){
                 case "firefox": {

@@ -1,5 +1,6 @@
 package by.course.framework.page;
 
+import by.course.framework.driver.DriverSingleton;
 import by.course.framework.service.ConfigReader;
 import by.course.framework.service.Constants;
 import by.course.framework.utils.BrowserUtils;
@@ -22,13 +23,10 @@ public abstract class AbstractPage {
      *
      *
      */
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+    private WebDriver driver = DriverSingleton.getDriver();
+    private WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigReader.get(Constants.COMMON_TIMEOUT)));;
 
-    protected AbstractPage(WebDriver driver){
-        // Почему бы драйвер не получать напрямую из DriverSingleton?
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Integer.parseInt(ConfigReader.get(Constants.COMMON_TIMEOUT)));
+    protected AbstractPage(){
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, Integer.parseInt(ConfigReader.get(Constants.COMMON_TIMEOUT))),this);
     }
 
