@@ -9,9 +9,12 @@ public class DriverSingleton {
 
     private static WebDriver driver;
 
+    private DriverSingleton() {
+        throw new AssertionError("Cannot be instantiated directly.");
+    }
+
     public static WebDriver getDriver() {
-        if (null == driver){
-            //System.getProperty("browser") nullable, а switch(null) нельзя. Сделай что ли проверку на null
+        if (driver == null && System.getProperty("browser") != null){
             switch (System.getProperty("browser")){
                 case "firefox": {
                     driver = createFirefoxDriver();
@@ -45,10 +48,4 @@ public class DriverSingleton {
         driver = null;
     }
 
-
-    //Consider members order: static fields, instance fields, constructor, methods (there are different approaches,
-    // but for now recommend - public, protected, default, private
-    private DriverSingleton() {
-        throw new AssertionError("Cannot be instantiated directly.");
-    }
 }
