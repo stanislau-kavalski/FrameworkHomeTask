@@ -8,8 +8,31 @@
     <artifactId>framework</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <dependencies>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <environment>dev</environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>qa</id>
+            <properties>
+                <environment>qa</environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>staging</id>
+            <properties>
+                <environment>staging</environment>
+            </properties>
+        </profile>
+    </profiles>
 
+    <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -38,12 +61,21 @@
             <version>2.11.1</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
+                <configuration>
+                    <systemProperties>
+                        <property>
+                            <name>environment</name>
+                            <value>${environment}</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -54,11 +86,5 @@
                 </configuration>
             </plugin>
         </plugins>
-        <!--Сделай плиз profile, где будут указаны три профайла: dev, qa, staging. По дефолту активирован dev.
-        Отсюда же должен сетаться инваермент, который будет использоваться в System.getProperty("environment")
-        Если не разберешься как сделать - говори, помогу
-
-        Соответственно и тесты будут запускать mvn clean install -Pdev
-        -->
     </build>
 </project>
