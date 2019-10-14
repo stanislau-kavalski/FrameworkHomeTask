@@ -14,6 +14,7 @@ public class CalculatorTestDataReader {
 
     public static String getTestData(String key) {
         try {
+            // Это  calculatorData.load(input); надо вынести в статический блок. Т.к. тебе явно не надо, чтобы это происходило при каждом обращении к пропертям
             calculatorData.load(input);
             return calculatorData.getProperty(key);
         } catch (IOException e) {
