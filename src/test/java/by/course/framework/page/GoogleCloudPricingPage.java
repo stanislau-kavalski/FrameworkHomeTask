@@ -1,6 +1,5 @@
 package by.course.framework.page;
 
-import by.course.framework.utils.BrowserUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,9 +13,8 @@ public class GoogleCloudPricingPage extends AbstractPage {
     private WebElement calculatorsBtn;
 
     public GoogleCloudCalculatorPage openCalculators() {
-        //Создать соответствующие методы на AbstractPage. Такие методы - не очень правильный подход, но в рамках примера - нормально
-        if(BrowserUtils.getWindowWidth(getDriver()) < MIN_WINDOW_WIDTH) {
-            getDriver().navigate().refresh();
+        if(getWindowWidth() < MIN_WINDOW_WIDTH) {
+            refreshPage();
             waitUntilPresenceOfElementLocatedAndClick(By.className(CLOUD_JUMP_MENU_CLASSNAME));
         }
         clickElement(calculatorsBtn);

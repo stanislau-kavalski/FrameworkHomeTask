@@ -3,7 +3,6 @@ package by.course.framework.test;
 import by.course.framework.model.*;
 import by.course.framework.page.*;
 import by.course.framework.service.*;
-import by.course.framework.utils.BrowserUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -24,8 +23,6 @@ public class GoogleCloudTest extends CommonConditions {
                 pressEmailEstimate().
                 openMailHomePage().
                 getEmail().
-                openEmailForm().
-                enterEmail().
                 sendEmail();
     }
 
@@ -33,7 +30,7 @@ public class GoogleCloudTest extends CommonConditions {
     public void checkCostInEstimatePageAndCostInEmail() {
         GoogleCloudCalculatorEstimatePage estimatePage = new GoogleCloudCalculatorEstimatePage();
         String costInEstimatePage = estimatePage.getTotalPrice();
-        BrowserUtils.switchToTab(getDriver(), 1);
+        switchToTab(1);
         MinuteMailHomePage emailPage = new MinuteMailHomePage();
         emailPage.OpenEmail();
         String costInEmail = emailPage.getTotalPrice();

@@ -5,12 +5,11 @@ import org.openqa.selenium.support.FindBy;
 
 public class GoogleCloudProductsPage extends AbstractPage {
 
-    @FindBy(xpath = "//*[@track-name='seePricing']")
+    @FindBy(linkText = "See pricing")
     private WebElement seePricingBtn;
 
     public GoogleCloudPricingPage openSeePricing() {
-        //Использовать новый метод с AbstractPage
-        seePricingBtn.click();
+        defaultClickElement(seePricingBtn);
         return new GoogleCloudPricingPage();
     }
 }

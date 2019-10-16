@@ -1,5 +1,6 @@
 package by.course.framework.page;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 public class GoogleCloudCalculatorEstimatePage extends AbstractPage {
 
     private static final String EMAIL_FORM_NAME = "emailForm";
+    private static final String ONLY_DIGITS_REGEX = "[^0-9.,]+";
 
     @FindBy(id = "email_quote")
     private WebElement emailEstimate;
@@ -21,14 +23,7 @@ public class GoogleCloudCalculatorEstimatePage extends AbstractPage {
     }
 
     public String getTotalPrice() {
-        // Не делай "", делай StringUtils.EMPTY
-        // [^0-9.,]+  в константы
-        String totalPrice = this.totalPrice.getText().replaceAll("[^0-9.,]+","");
-        totalPrice = totalPrice.substring(0, totalPrice.length() - 1);
-        /*Ненужный ассайнмент.
-        Делать так не нужно. Можно просто
-            return totalPrice.substring(0, totalPrice.length() - 1);*/
-        return totalPrice;
+        String totalPrice = this.totalPrice.getText().replaceAll(ONLY_DIGITS_REGEX, StringUtils.EMPTY);
+        return totalPrice.substring(0, totalPrice.length() - 1);
     }
-
 }

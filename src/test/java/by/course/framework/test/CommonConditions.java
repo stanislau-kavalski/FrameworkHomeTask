@@ -5,6 +5,8 @@ import by.course.framework.utils.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
+import java.util.ArrayList;
+
 @Listeners({TestListener.class})
 public class CommonConditions {
 
@@ -22,7 +24,8 @@ public class CommonConditions {
         DriverSingleton.closeDriver();
     }
 
-    protected WebDriver getDriver() {
-        return driver;
+    protected void switchToTab(int tabNumber) {
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tabNumber));
     }
 }

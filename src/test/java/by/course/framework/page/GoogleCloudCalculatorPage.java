@@ -44,8 +44,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     private WebElement addToEstimate;
 
     public GoogleCloudCalculatorPage switchToCalculatorFormIframe() {
-        //Использовать новый метод с AbstractPage
-        getDriver().switchTo().frame(iFrame);
+        switchToFrame(iFrame);
         return this;
     }
 
@@ -53,15 +52,13 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         clickElement(computeEngineSectionBtn);
     }
 
-    public GoogleCloudCalculatorPage setNumberOfInstances(int numberOfInstances) {
-        //Использовать новый метод с AbstractPage
-        this.numberOfInstances.sendKeys(Integer.toString(numberOfInstances));
+    public GoogleCloudCalculatorPage setNumberOfInstances(int InstancesNumber) {
+        setValue(numberOfInstances, Integer.toString(InstancesNumber));
         return this;
     }
 
     public void setWhatAreTheseInstanceFor(String instancesFor) {
-        //Использовать новый метод с AbstractPage
-        whatAreTheseInstanceFor.sendKeys(instancesFor);
+        setValue(whatAreTheseInstanceFor, instancesFor);
     }
 
     public GoogleCloudCalculatorPage setOperationSystemOrSoftware(String operationSystem) {
