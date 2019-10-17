@@ -17,11 +17,13 @@ public class EmailForm extends AbstractPage {
     @FindBy(xpath = "//*[@ng-click='emailQuote.emailQuote(true); emailQuote.$mdDialog.hide()']")
     private WebElement sendEmailBtn;
 
+    // Еще раз, не надо в кострукторе передать email
     public EmailForm(String email) {
         openEmailForm();
         enterEmail(email);
     }
 
+    // тут можно передать email
     public void sendEmail() {
         waitUntilElementToBeClickableAndClick(sendEmailBtn);
         waitUntilInvisibilityOfElementLocated(By.name(EMAIL_FORM_NAME));

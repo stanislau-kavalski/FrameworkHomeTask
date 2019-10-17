@@ -32,6 +32,7 @@ public class DriverSingleton {
     }
 
     public static WebDriver getDriver() {
+        // А если кто-нить вызовет getDriver до setDriver? тут можно добавить проверку, если null, то setDriver
         return driver;
     }
 
